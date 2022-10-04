@@ -1,14 +1,14 @@
 package state;
 
-public class Disponivel extends PrateleiraState{
+public class Requisitado extends PrateleiraState{
     
-    public Disponivel(Produto produto){
+    public Requisitado(Produto produto){
         super(produto);
     }
 
     @Override
     public void produtoDisponivel() {
-        System.out.println("Este Produto já está Disponível!");
+        getProduto().setState(new Disponivel(getProduto()));
         
     }
 
@@ -20,10 +20,13 @@ public class Disponivel extends PrateleiraState{
 
     @Override
     public void produtoRequisitado() {
-        getProduto().setState(new Requisitado(getProduto()));
+        System.out.println("Este produto já foi requisitado!");
+        
     }
 
     public void myState(){
-        System.out.println("Estado: Disponivel");
+        System.out.println("Estado: Requisitado");
     }
+
+    
 }

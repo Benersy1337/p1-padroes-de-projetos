@@ -5,6 +5,7 @@ import nullObject.*;
 // import observer.*;
 // import state.*;
 // import strategy.*;
+import state.Produto;
 
 
 
@@ -60,8 +61,26 @@ public class Main{
         System.out.println("=============================================================================================================");
 
 
+        // STATE
 
+        // VERIFICAÇÃO DE QUAL SITUAÇÃO ATUAL O PRODUTO SE ENCONTRA, MUDANDO SEUS ESTADOS
 
+        
+
+        System.out.println("\n Padrão STATE \n");
+
+        Produto produto = new Produto();
+
+        produto.disponivel();
+        produto.state();
+        produto.requisitado();
+        produto.state();
+        produto.perdido();
+        produto.state();
+        produto.perdido();
+        produto.state();
+
+        System.out.println("=============================================================================================================");
 
 
 

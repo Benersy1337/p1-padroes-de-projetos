@@ -2,10 +2,13 @@ package main;
 
 import hookMethod.*;
 import nullObject.*;
-// import observer.*;
-// import state.*;
-// import strategy.*;
-import state.Produto;
+import observer.*;
+import state.*;
+import strategy.*;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -83,7 +86,95 @@ public class Main{
         System.out.println("=============================================================================================================");
 
 
+        // OBSERVER
+
+
+        // Almoxarifado Notificando ao vendedor, se a encomenda do seu cliente já está dísponivel ou não.
+
+
+        System.out.println("\n Padrão OBSERVER \n");
+
+
+       
+        Encomenda e1 = new Encomenda(789, true);
+        Encomenda e2 = new Encomenda(123, true);
+        Encomenda e3 = new Encomenda(456, false);
+
+        ProdutoNotify prodNotify = new ProdutoNotify("ALMOX");
+
+        prodNotify.addObserver(e1);
+        prodNotify.addObserver(e2);
+        prodNotify.addObserver(e3);
+
+        Vendedor luan = new Vendedor("Luan");
+
+        System.out.println("Vendedor: " + luan.getName() + "\nPesquisando por todas as Encomendas\n");
+
+        prodNotify.notify(789, "Encomenda Pendente!");
+
+        prodNotify.notify(123, "Encomenda Pendente!");
+
+        prodNotify.notify(456, "Encomenda já entregue!\n");
+
+        prodNotify.removeObserver(e3);
+
+        System.out.println("Vendedor: " + luan.getName() + "\nPesquisando por todas as Encomendas Pendentes\n");
+
+        prodNotify.notify(456,"Notificação Removida!");
+
+        prodNotify.notify(789, "Encomenda Pendente!");
+
+        prodNotify.notify(123, "Encomenda Pendente!");
+
+
+
+        System.out.println("=============================================================================================================");
+
+
+
+        // STRATEGY
+
+        // Um cliente encomenda algum produto na loja, aonde a loja pode ter aquele item disponível no estoque ou não. Se tiver disponivel, o item vai ter o custo direto da fábrica e vendemos ao nosso preço de venda, 
+        // se tiver indisponível, solicitamos a uma empresa tercerizada que tenha o item, porém pagamos o preço de venda dela para assim fazermos o nosso preço de venda, que consequentemente, mais caro que de fábrica.
+        // Se a encomenda do produto for da fábrica, será apenas 20% a mais no valor de custo.
+        // Se a encomenda do produto for de tercerizadas que também compram de fábrica, será 40% a mais no valor de custo.
+
+
+        System.out.println("\n Padrão STRATEGY \n");
+
+
+        Cliente joao = new Cliente("João", "12");
+
+        Vendedor lucas = new Vendedor("Lucas");
+
+        List<Double> encomendasFabrica = new ArrayList<Double>();
+
+        List<Double> encomendasTercerizadas = new ArrayList<Double>();
+
+        encomendasFabrica.add(343.54);
+        encomendasFabrica.add(415.17);
+
+        encomendasTercerizadas.add(218.19);
+        encomendasTercerizadas.add(1012.18);
+
+        ResultadoEncomenda com20 = new ResultadoEncomenda(joao, lucas, encomendasFabrica, new EncomendaFabrica());
+
+        ResultadoEncomenda com40 = new ResultadoEncomenda(joao, lucas, encomendasTercerizadas, new EncomendaTercerizada());
+
+        System.out.println("Vendedor: " + lucas.getName() + "\nCliente: " + joao.getNome() + "\n" + "\nSua busca pelos produtos ficaram com os seguintes valores abaixo" + "\n");
+       
+        System.out.println("De Fábrica com 20% " + com20.calcularEncomendaFinal());
+
+        System.out.println("De Empresa Tercerizada com 40% " + com40.calcularEncomendaFinal());
+
+
+        System.out.println("=============================================================================================================");
+        
+        
+
 
     }
 }
+
+
 

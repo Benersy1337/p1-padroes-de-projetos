@@ -2,7 +2,7 @@ package hookMethod;
 
 // HOOK METHOD - IMPOSTO SOBRE TIPO DE NOTA FISCAL
 
-public abstract class NotaFiscal {
+public abstract class NotaFiscal{
 
     private int numNotaFiscal;
     private double valorNotaFiscal;

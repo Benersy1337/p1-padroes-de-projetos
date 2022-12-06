@@ -19,7 +19,7 @@ public class ProdutoDAODecorator implements ProdutoDAOInterface{
 
             getDAO().addProduto(locacao, nome);
 
-            System.out.println("Adicionado produto a locação com sucesso!");
+            System.out.println("Adicionado produto a locacao com sucesso!");
             
         }
 
@@ -29,7 +29,7 @@ public class ProdutoDAODecorator implements ProdutoDAOInterface{
         
     
         else {
-            throw new ProdutoException("Locação já está sendo usada!");
+            throw new ProdutoException("Locacao já está sendo usada!");
         }
            
     }
@@ -37,7 +37,7 @@ public class ProdutoDAODecorator implements ProdutoDAOInterface{
     public Produto getProduto(String locacao, String nome) throws ProdutoException {
 
         if(locacao.isBlank() && nome.isBlank()){
-            throw new ProdutoException("Locação disponivel!");
+            throw new ProdutoException("Locacao disponivel!");
         } 
 
     
@@ -49,7 +49,7 @@ public class ProdutoDAODecorator implements ProdutoDAOInterface{
             // Caso na recuperação do produto voltar null, fazemos uma verificação. 
             if(x == null)
                 return x;
-            throw new ProdutoException("Locação Preenchida");
+            throw new ProdutoException("Locacao Preenchida");
         }
         
     }

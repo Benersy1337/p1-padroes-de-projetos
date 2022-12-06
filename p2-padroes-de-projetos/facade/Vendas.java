@@ -4,7 +4,7 @@ public class Vendas implements Almoxarifado{
 
     @Override
     public void emitir() {
-        System.out.println("Requisição de Venda Emitida");
+        System.out.println("Requisiçao de Venda Emitida");
     }
 
 }
